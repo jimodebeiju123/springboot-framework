@@ -1,6 +1,5 @@
 package com.ylink.framework.redisson.properties;
 
-import org.redisson.client.codec.Codec;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 import java.util.List;
@@ -11,7 +10,7 @@ import java.util.List;
  * @author zhanglinfeng
  */
 @ConfigurationProperties(prefix = "spring.redisson")
-public class RedissonProperties {
+public class RedissonProperties{
 
     /**
      * json格式配置文件
@@ -37,7 +36,7 @@ public class RedissonProperties {
     /**
      * 编码
      */
-    private Codec codec;
+    private Class codec;
 
     /**
      * springCaches
@@ -76,11 +75,11 @@ public class RedissonProperties {
         this.passWord = passWord;
     }
 
-    public Codec getCodec() {
+    public Class getCodec() {
         return codec;
     }
 
-    public void setCodec(Codec codec) {
+    public void setCodec(Class codec) {
         this.codec = codec;
     }
 

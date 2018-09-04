@@ -18,7 +18,7 @@
         <springboot.version>2.0.4.RELEASE</springboot.version>
         <maven.host>http://maven.changhong.io</maven.host>
     </properties>
-
+    
 
     <!-- maven 私服 jar库  -->
     <repositories>

@@ -4,7 +4,9 @@ import com.ylink.framework.redisson.properties.RedissonProperties;
 import com.ylink.framework.redisson.properties.SpringCacheProperties;
 import org.redisson.Redisson;
 import org.redisson.api.RedissonClient;
+import org.redisson.client.codec.Codec;
 import org.redisson.config.Config;
+import org.redisson.config.SingleServerConfig;
 import org.redisson.config.TransportMode;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
@@ -57,9 +59,17 @@ public class RedissonAutoConfiguration {
             return configYaml();
         } else if(!StringUtils.isEmpty(redissonProperties.getUrl())){
             Config config = new  Config();
-            config.useSingleServer().setAddress(redissonProperties.getUrl()).setPassword(redissonProperties.getPassWord());
+            SingleServerConfig singleServerConfig = config.useSingleServer().setAddress(redissonProperties.getUrl());
+            if(!StringUtils.isEmpty(redissonProperties.getPassWord())){
+                singleServerConfig.setPassword(redissonProperties.getPassWord());
+            }
             if(redissonProperties.getCodec()!=null){
-                config.setCodec(redissonProperties.getCodec());
+                try {
+                    config.setCodec((Codec) redissonProperties.getCodec().newInstance());
+                } catch (Exception e) {
+                    logger.warn("序列化编码无法解析！传入:[{}]",redissonProperties.getCodec());
+                }
+
             }
             return config;
         }else {
