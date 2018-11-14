@@ -7,7 +7,6 @@ import org.redisson.api.RedissonClient;
 import org.redisson.client.codec.Codec;
 import org.redisson.config.Config;
 import org.redisson.config.SingleServerConfig;
-import org.redisson.config.TransportMode;
 import org.redisson.spring.cache.CacheConfig;
 import org.redisson.spring.cache.RedissonSpringCacheManager;
 import org.slf4j.Logger;
