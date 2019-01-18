@@ -70,6 +70,9 @@ public class RedissonAutoConfiguration {
                 }
 
             }
+            config.setThreads(redissonProperties.getThreads());
+            config.setNettyThreads(redissonProperties.getNettyThreads());
+
             return config;
         }else {
             throw new RuntimeException("please offer the config file by json/yaml");

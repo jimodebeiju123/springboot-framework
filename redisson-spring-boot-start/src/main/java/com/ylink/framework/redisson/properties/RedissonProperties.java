@@ -39,6 +39,17 @@ public class RedissonProperties{
     private Class codec;
 
     /**
+     * 默认线程数
+     */
+    private int threads = 10;
+
+    /**
+     * netty 线程
+     */
+    private int nettyThreads =20;
+
+
+    /**
      * springCaches
      */
     private List<SpringCacheProperties> springCaches;
@@ -89,5 +100,21 @@ public class RedissonProperties{
 
     public void setSpringCaches(List<SpringCacheProperties> springCaches) {
         this.springCaches = springCaches;
+    }
+
+    public int getThreads() {
+        return threads;
+    }
+
+    public void setThreads(int threads) {
+        this.threads = threads;
+    }
+
+    public int getNettyThreads() {
+        return nettyThreads;
+    }
+
+    public void setNettyThreads(int nettyThreads) {
+        this.nettyThreads = nettyThreads;
     }
 }
